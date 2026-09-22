@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: go-frontend2
+  namespace: go-frontend2
+  labels:
+    app: go-frontend2
+    backstage.io/kubernetes-id: go-frontend2
+spec:
+  ingressClassName: kong
+  rules:
+    - host: go-frontend2.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: go-frontend2
+                port:
+                  name: http

@@ -1,0 +1,14 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: go-frontend2
+  description: go-frontend2
+  annotations:
+    github.com/project-slug: gusLopezC-DevOps/go-frontend2
+    backstage.io/kubernetes-id: go-frontend2
+    backstage.io/kubernetes-namespace: go-frontend2
+    backstage.io/techdocs-ref: url:https://github.com/gusLopezC-DevOps/go-frontend2/tree/main
+spec:
+  type: website
+  lifecycle: production
+  owner: group:default/development

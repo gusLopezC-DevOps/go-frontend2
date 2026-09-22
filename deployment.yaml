@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: go-frontend2
+  namespace: go-frontend2
+  labels:
+    app: go-frontend2
+    backstage.io/kubernetes-id: go-frontend2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: go-frontend2
+  template:
+    metadata:
+      labels:
+        app: go-frontend2
+        backstage.io/kubernetes-id: go-frontend2
+    spec:
+      containers:
+        - name: app
+          image: docker.io/guslopezc/go-frontend2:ci
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+          resources:
+            requests:
+              cpu: 25m
+              memory: 32Mi
+            limits:
+              cpu: 100m
+              memory: 96Mi

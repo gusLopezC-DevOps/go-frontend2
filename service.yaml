@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: go-frontend2
+  namespace: go-frontend2
+  labels:
+    app: go-frontend2
+    backstage.io/kubernetes-id: go-frontend2
+spec:
+  selector:
+    app: go-frontend2
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
