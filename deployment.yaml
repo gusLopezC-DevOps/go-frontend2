@@ -17,9 +17,16 @@ spec:
         app: go-frontend2
         backstage.io/kubernetes-id: go-frontend2
     spec:
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 65532
+        fsGroup: 65532
+        seccompProfile:
+          type: RuntimeDefault
       containers:
         - name: app
           image: docker.io/guslopezc/go-frontend2:ci
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           readinessProbe:
@@ -30,6 +37,11 @@ spec:
             httpGet:
               path: /health
               port: 8080
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop: ["ALL"]
           resources:
             requests:
               cpu: 25m
